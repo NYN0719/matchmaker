@@ -1,0 +1,46 @@
+<view class="brand" style="--status-bar-height: {{statusBarHeight}}px; --nav-bar-height: {{navBarHeight}}px;">
+  <view class="header header-fixed" style="padding-top: {{statusBarHeight}}px; height: {{navTotalHeight}}px;">
+    <view class="header-left">
+      <view class="back" bindtap="back">← 返回</view>
+      <view>
+        <view class="title">{{title}}（{{count}}）</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="header-spacer" style="height: {{navTotalHeight}}px;"></view>
+
+  <view class="container with-fixed" style="padding-top: 18rpx;">
+    <input class="input" placeholder="🔍 搜索姓名 / 年龄" value="{{q}}" bindinput="onSearch" />
+
+    <view style="height: 18rpx;"></view>
+
+    <block wx:if="{{list.length === 0}}">
+      <view class="card" style="text-align:center; color:#666;">暂无客户</view>
+    </block>
+
+    <block wx:for="{{list}}" wx:key="id">
+      <view class="card" style="margin-bottom: 18rpx;" bindtap="openDetail" data-id="{{item.id}}">
+        <view style="display:flex; justify-content:space-between; align-items:baseline;">
+          <view class="name-row">
+            <view class="avatar">
+              <block wx:if="{{item.photo}}">
+                <image class="avatar-img" src="{{item.photo}}" mode="aspectFill" />
+              </block>
+              <block wx:else>
+                <view class="avatar-ph">{{gender === 'female' ? '女' : '男'}}</view>
+              </block>
+            </view>
+            <view class="one-line" style="font-size:20px; font-weight:800;">{{item.name}}</view>
+          </view>
+          <view style="font-size:16px; color:#666;">{{item.age}}岁 · {{item.marital}}</view>
+        </view>
+        <view class="sub" style="margin-top: 10rpx;">{{item.region}} · {{item.job}}</view>
+      </view>
+    </block>
+  </view>
+
+  <view class="fixed-bottom">
+    <view class="btn btn-primary" bindtap="add">＋ 添加客户</view>
+  </view>
+</view>

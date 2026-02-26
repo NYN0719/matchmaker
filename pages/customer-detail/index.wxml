@@ -1,0 +1,59 @@
+<view class="brand" style="--status-bar-height: {{statusBarHeight}}px; --nav-bar-height: {{navBarHeight}}px;">
+  <view class="header header-fixed" style="padding-top: {{statusBarHeight}}px; height: {{navTotalHeight}}px;">
+    <view class="header-left">
+      <view class="back" bindtap="back">← 返回</view>
+      <view>
+        <view class="title">
+          {{customer.name}}
+          <text class="sub-inline">{{customer.gender === 'female' ? '（女）' : '（男）'}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="back" style="background: rgba(0,0,0,0.04); color:#222;" bindtap="remove">删除</view>
+  </view>
+
+  <view class="header-spacer" style="height: {{navTotalHeight}}px;"></view>
+
+  <view class="container with-fixed" style="padding-top: 18rpx;">
+    <view class="card" style="padding: 0; overflow: hidden;">
+      <block wx:if="{{customer.photo}}">
+        <image src="{{customer.photo}}" mode="aspectFit" style="width:100%; height: 360rpx;" />
+      </block>
+      <block wx:else>
+        <view style="height:360rpx; display:flex; align-items:center; justify-content:center; color:#666; font-weight:700;">照片</view>
+      </block>
+    </view>
+
+    <view style="height: 18rpx;"></view>
+
+    <view class="card">
+      <view style="display:grid; grid-template-columns: 1fr; row-gap: 14rpx;">
+        <view>年龄：<text style="font-weight:700;">{{customer.age}}</text></view>
+        <view>地区：<text style="font-weight:700;">{{customer.region}}</text></view>
+        <view>婚史：<text style="font-weight:700;">{{customer.marital}}</text></view>
+        <view>工作：<text style="font-weight:700;">{{customer.job}}</text></view>
+        <view>家庭：<text style="font-weight:700;">{{customer.family}}</text></view>
+      </view>
+
+      <view class="hairline" style="margin: 18rpx 0;"></view>
+
+      <view class="sub">备注：</view>
+      <view style="margin-top: 8rpx; white-space: pre-wrap;">{{customer.note || '—'}}</view>
+    </view>
+  </view>
+
+  <view class="fixed-bottom">
+    <view class="fixed-actions">
+      <block wx:if="{{from === 'match'}}">
+        <view class="btn btn-primary" bindtap="back">返回匹配列表</view>
+        <view class="btn btn-plain" bindtap="recommend">推荐给别人</view>
+      </block>
+      <block wx:else>
+        <block wx:if="{{canShowSmartMatch}}">
+          <view class="btn btn-primary" bindtap="goMatch">智能匹配{{customer.gender === 'female' ? '男生' : '女生'}}</view>
+        </block>
+        <view class="btn btn-plain" bindtap="recommend">推荐给别人</view>
+      </block>
+    </view>
+  </view>
+</view>

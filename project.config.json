@@ -1,0 +1,28 @@
+{
+  "miniprogramRoot": "",
+  "projectname": "matchmaker-mini",
+  "description": "红娘客户管理小程序",
+  "appid": "wxf8e8c4f2bb64431a",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "compileType": "miniprogram",
+  "libVersion": "3.14.2",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "auto",
+    "tabSize": 2
+  }
+}

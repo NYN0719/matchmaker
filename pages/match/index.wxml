@@ -1,0 +1,42 @@
+<view class="brand" style="--status-bar-height: {{statusBarHeight}}px; --nav-bar-height: {{navBarHeight}}px;">
+  <view class="header header-fixed" style="padding-top: {{statusBarHeight}}px; height: {{navTotalHeight}}px;">
+    <view class="header-left">
+      <view class="back" bindtap="back">← 返回</view>
+      <view class="title-row">
+        <view class="title one-line">为 {{target.name}} 匹配</view>
+        <view class="meta">推荐 {{recs.length}} 人</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="header-spacer" style="height: {{navTotalHeight}}px;"></view>
+
+  <view class="container" style="padding-top: 18rpx;">
+    <block wx:if="{{!target.id}}">
+      <view class="card" style="text-align:center; color:#666;">暂无可匹配对象</view>
+    </block>
+
+    <block wx:for="{{recs}}" wx:key="id">
+      <view class="card" style="margin-bottom: 18rpx;">
+        <view style="display:flex; justify-content:space-between; align-items:baseline;">
+          <view class="name-row">
+            <view class="avatar">
+              <block wx:if="{{item.photo}}">
+                <image class="avatar-img" src="{{item.photo}}" mode="aspectFill" />
+              </block>
+              <block wx:else>
+                <view class="avatar-ph">{{item.gender === 'female' ? '女' : '男'}}</view>
+              </block>
+            </view>
+            <view class="one-line" style="font-size:20px; font-weight:800;">{{item.name}}</view>
+          </view>
+          <view style="font-size:16px; color:#666;">{{item.age}}岁 · {{item.marital}}</view>
+        </view>
+        <view class="sub" style="margin-top: 10rpx;">{{item.region}} · {{item.note || '资料简洁'}}</view>
+          <view class="sub" style="margin-top: 10rpx;">{{item.region}} · {{item.note || '资料简洁'}}</view>
+        <view style="height: 14rpx;"></view>
+        <view class="btn btn-plain" style="height: 92rpx;" bindtap="openDetail" data-id="{{item.id}}">查看详情</view>
+      </view>
+    </block>
+  </view>
+</view>

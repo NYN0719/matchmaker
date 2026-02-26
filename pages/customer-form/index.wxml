@@ -1,0 +1,75 @@
+<view class="brand" style="--status-bar-height: {{statusBarHeight}}px; --nav-bar-height: {{navBarHeight}}px;">
+  <view class="header header-fixed" style="padding-top: {{statusBarHeight}}px; height: {{navTotalHeight}}px;">
+    <view class="header-left">
+      <view class="back" bindtap="back">← 返回</view>
+      <view>
+        <view class="title">{{pageTitle}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="header-spacer" style="height: {{navTotalHeight}}px;"></view>
+
+  <view class="container with-fixed" style="padding-top: 18rpx;">
+    <view class="card photo-card" style="--photo-h: 360rpx;">
+      <block wx:if="{{form.photo}}">
+        <image class="photo-img" src="{{form.photo}}" mode="aspectFit" catchtap="previewPhoto" />
+        <view class="photo-badge" catchtap="pickPhoto">更换</view>
+      </block>
+      <block wx:else>
+        <view class="photo-placeholder" bindtap="pickPhoto">
+          <view class="photo-ph-title">＋ 上传照片</view>
+          <view class="photo-ph-sub">建议横图，展示高度上限 360rpx</view>
+        </view>
+      </block>
+    </view>
+
+    <view class="field">
+      <view class="label">姓名</view>
+      <input class="input" placeholder="请输入姓名" value="{{form.name}}" data-k="name" bindinput="onInput" />
+    </view>
+
+    <view class="field">
+      <view class="label">年龄</view>
+      <input class="input" type="number" placeholder="请输入年龄" value="{{form.age}}" data-k="age" bindinput="onInput" />
+    </view>
+
+    <view class="field">
+      <view class="label">地区</view>
+      <input class="input" placeholder="如：本地" value="{{form.region}}" data-k="region" bindinput="onInput" />
+    </view>
+
+    <view class="field">
+      <view class="label">婚史</view>
+      <view class="card" style="padding: 18rpx 20rpx;">
+        <radio-group bindchange="onMarital">
+          <label style="margin-right: 28rpx;">
+            <radio value="未婚" checked="{{form.marital === '未婚'}}" color="#e53935" /> 未婚
+          </label>
+          <label>
+            <radio value="离异" checked="{{form.marital === '离异'}}" color="#e53935" /> 离异
+          </label>
+        </radio-group>
+      </view>
+    </view>
+
+    <view class="field">
+      <view class="label">工作</view>
+      <input class="input" placeholder="如：工厂上班" value="{{form.job}}" data-k="job" bindinput="onInput" />
+    </view>
+
+    <view class="field">
+      <view class="label">家庭情况</view>
+      <input class="input" placeholder="如：父母健在" value="{{form.family}}" data-k="family" bindinput="onInput" />
+    </view>
+
+    <view class="field">
+      <view class="label">备注</view>
+      <textarea class="input" style="height: 240rpx; padding-top: 18rpx;" placeholder="简单备注即可" value="{{form.note}}" data-k="note" bindinput="onInput" />
+    </view>
+  </view>
+
+  <view class="fixed-bottom">
+    <view class="btn btn-primary" bindtap="save">保存</view>
+  </view>
+</view>

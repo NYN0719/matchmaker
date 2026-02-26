@@ -1,0 +1,61 @@
+<view class="brand" style="--status-bar-height: {{statusBarHeight}}px; --nav-bar-height: {{navBarHeight}}px;">
+  <view class="header header-fixed" style="padding-top: {{statusBarHeight}}px; height: {{navTotalHeight}}px;">
+    <view class="header-left">
+      <view class="back" bindtap="back">← 返回</view>
+      <view>
+        <view class="title">我的展示页</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="header-spacer" style="height: {{navTotalHeight}}px;"></view>
+
+  <view class="container" style="padding-top: 18rpx;">
+    <block wx:if="{{locked}}">
+      <view class="card" style="padding: 28rpx;">
+        <view style="font-size: 18px; font-weight: 900; color:#222;">功能暂未开放</view>
+        <view class="sub" style="margin-top: 10rpx;">展示页将在 <text style="font-weight:900; color:#e53935;">{{lockedText}}</text></view>
+        <view style="height: 14rpx;"></view>
+        <view class="btn btn-primary" style="height: 96rpx;" bindtap="back">返回</view>
+      </view>
+    </block>
+
+    <block wx:else>
+    <view class="card" style="padding: 28rpx;">
+      <view style="font-size: 22px; font-weight: 900; color:#e53935;">❤️ {{profile.title}}</view>
+      <view class="sub" style="margin-top: 10rpx;">已有 <text style="font-weight:900; color:#222;">{{stats.total}}</text> 位单身资源</view>
+    </view>
+
+    <view style="height: 18rpx;"></view>
+
+    <view class="sub" style="font-weight:800; color:#222;">优质男士</view>
+    <view style="height: 12rpx;"></view>
+    <block wx:for="{{topMale}}" wx:key="id">
+      <view class="card" style="margin-bottom: 14rpx;" bindtap="openDetail" data-id="{{item.id}}">
+        <view style="font-weight:800; font-size:18px;">{{item.age}}岁 {{item.region}} {{item.marital}} {{item.job ? '' : ''}}</view>
+        <view class="sub" style="margin-top: 8rpx;">点击了解详情</view>
+      </view>
+    </block>
+
+    <view style="height: 18rpx;"></view>
+
+    <view class="sub" style="font-weight:800; color:#222;">优质女士</view>
+    <view style="height: 12rpx;"></view>
+    <block wx:for="{{topFemale}}" wx:key="id">
+      <view class="card" style="margin-bottom: 14rpx;" bindtap="openDetail" data-id="{{item.id}}">
+        <view style="font-weight:800; font-size:18px;">{{item.age}}岁 {{item.region}} {{item.marital}}</view>
+        <view class="sub" style="margin-top: 8rpx;">点击了解详情</view>
+      </view>
+    </block>
+
+    <view style="height: 20rpx;"></view>
+
+    <view class="card" style="border: 2rpx solid rgba(229,57,53,0.18);">
+      <view style="font-size:20px; font-weight:900;">📞 联系红娘：{{fixedPhone}}</view>
+      <view class="sub" style="margin-top: 8rpx;">这是我的小程序页面</view>
+      <view style="height: 14rpx;"></view>
+      <view class="btn btn-primary" style="height: 96rpx;" bindtap="call">拨打电话</view>
+    </view>
+    </block>
+  </view>
+</view>
